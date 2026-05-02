@@ -11,6 +11,9 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
 
     boolean existsByStudentIdAndCourseId(Long studentId, Long courseId);
 
+    @Query("SELECT e FROM Enrollment e JOIN FETCH e.student JOIN FETCH e.course ORDER BY e.enrollmentDate DESC")
+    List<Enrollment> findAllWithStudentAndCourse();
+
     @Query("SELECT e FROM Enrollment e JOIN FETCH e.course c WHERE e.student.id = :studentId ORDER BY e.enrollmentDate DESC")
     List<Enrollment> findEnrollmentsWithCourseByStudentId(@Param("studentId") Long studentId);
 

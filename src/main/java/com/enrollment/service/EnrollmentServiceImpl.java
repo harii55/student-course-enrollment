@@ -30,7 +30,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Override
     @Transactional(readOnly = true)
     public List<Enrollment> findAll() {
-        return enrollmentRepository.findAll();
+        return enrollmentRepository.findAllWithStudentAndCourse();
     }
 
     @Override
